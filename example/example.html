@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!-- 
+  Design Inspired by Yitian Li (UX Designer @ Google | UC Berkeley MIMS)
+  Portfolio: https://www.yitian-li.com/
+  LinkedIn: https://www.linkedin.com/in/yitian-tina-li/
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Product Manager Resume</title>
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. Global Variables & Print Configuration
+           ========================================================================== */
+        :root {
+            --primary: #626B9C;          /* Brand color for Name, Titles, Dates */
+            --secondary: #626B9C;        /* Secondary accent (matches primary) */
+            --text-main: #434343;        /* Standard body text color */
+            --text-strong: #000000;      /* Pitch black for structural hierarchy */
+            --bg-color: #FFFFFF;         /* Crisp white background */
+        }
+
+        @page {
+            size: letter;
+            margin: 0.3in 0.45in;        /* Ultra-tight ATS-compliant margins for Letter */
+        }
+
+        /* ==========================================================================
+           2. Base Typography & Layout Constraints
+           ========================================================================== */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Google Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-size: 9.5pt;
+            line-height: 1.35;
+            font-weight: 400;
+            font-optical-sizing: auto;
+            font-variation-settings: "GRAD" 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Main 2-column grid layout */
+        .resume-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0 2rem; 
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           3. Header & Contact Section
+           ========================================================================== */
+        .resume-header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .name {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 800;
+            font-size: 28pt;
+            color: var(--primary);
+            line-height: 1.05;
+            margin-bottom: 0.2rem;
+        }
+
+        .tagline {
+            font-family: 'Lexend', sans-serif;
+            font-size: 13pt;
+            font-weight: 400;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+        }
+
+        .social-icons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 1.2rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .social-icons a {
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 8.5pt;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.7;
+        }
+
+        .social-icons svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================================
+           4. Main Content Blocks (Experience & Projects)
+           ========================================================================== */
+        section {
+            margin-bottom: 0.8rem;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2.section-title {
+            font-family: 'Lexend', sans-serif;
+            font-size: 9.5pt;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 0.6rem 0;
+        }
+
+        /* Items (Experience / Generic blocks) */
+        .item {
+            margin-bottom: 0.6rem;
+        }
+
+        .item-header {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .role-title {
+            font-family: "Google Sans", sans-serif;
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--text-strong);
+        }
+
+        .company-name {
+            font-family: "Google Sans", sans-serif;
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--text-strong);
+        }
+
+        .meta-info {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 8pt;
+            font-weight: 500;
+            color: var(--primary);
+            margin-top: 0.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Lists & Bullets */
+        ul.bullet-list {
+            margin: 0;
+            padding-left: 1.2rem;
+            list-style-type: none;
+        }
+
+        ul.bullet-list li {
+            position: relative;
+            margin-bottom: 0.15rem;
+            font-family: "Google Sans", sans-serif;
+            font-size: 9.5pt;
+            color: var(--text-main);
+            line-height: 1.35;
+        }
+
+        ul.bullet-list li::before {
+            content: "●"; 
+            position: absolute;
+            left: -1rem;
+            color: var(--text-main); 
+            font-size: 0.65em; 
+            top: 0.35em; 
+        }
+
+        ul.bullet-list li strong {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Projects Section */
+        .project-title {
+            font-family: "Google Sans", sans-serif;
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--text-strong);
+        }
+
+        .project-title a {
+            text-decoration: underline;
+            text-decoration-color: var(--primary);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+        }
+
+        /* ==========================================================================
+           5. Right Column Components (Education, Skills, Certs)
+           ========================================================================== */
+        /* Education */
+        .edu-item {
+            margin-bottom: 0.8rem;
+        }
+
+        .edu-school {
+            font-family: "Google Sans", sans-serif;
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--text-strong);
+        }
+
+        .edu-degree {
+            font-family: "Google Sans", sans-serif;
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 0.3rem;
+        }
+
+        .edu-track {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 8pt;
+            font-weight: 500;
+            color: var(--primary);
+            margin-top: 0.2rem;
+        }
+
+        /* Skills */
+        .skill-group {
+            margin-bottom: 0.6rem;
+        }
+        .skill-group-title {
+            font-family: "Google Sans", sans-serif;
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--text-strong);
+            margin-bottom: 0.4rem;
+        }
+        
+        /* Certifications */
+        .cert-item {
+            margin-bottom: 0.6rem;
+        }
+        .cert-title {
+            font-family: "Google Sans", sans-serif;
+            font-size: 10pt;
+            font-weight: 600;
+            color: var(--text-strong);
+        }
+        .cert-meta {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 8pt;
+            font-weight: 500;
+            color: var(--primary);
+            margin-top: 0.2rem;
+        }
+        .cert-platform {
+            color: var(--primary);
+        }
+        .cert-date {
+            color: var(--primary);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="resume-header">
+    <div class="name">John Doe</div>
+    <div class="tagline">Senior Product Manager | AI & Machine Learning | Growth Strategy</div>
+    <div class="social-icons">
+        <a href="mailto:john.doe@example.com" title="john.doe@example.com">
+            <svg viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+            <span>john.doe@example.com</span>
+        </a>
+        <a href="tel:+11234567890" title="+1 (123) 456-7890">
+            <svg viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+            <span>+1 (123) 456-7890</span>
+        </a>
+        <a href="https://linkedin.com/in/johndoe" title="linkedin.com/in/johndoe">
+            <svg viewBox="0 0 448 512"><path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM448 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg>
+            <span>linkedin.com/in/johndoe</span>
+        </a>
+        <a href="https://github.com/johndoe" title="github.com/johndoe">
+            <svg viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+            <span>github.com/johndoe</span>
+        </a>
+    </div>
+</div>
+
+<div class="resume-container">
+    <!-- Left Column -->
+    <div class="column-left">
+        
+        <section>
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="item">
+                <div class="item-header">
+                    <span class="role-title">Senior Product Manager</span>
+                    <span class="company-name">@ Google</span>
+                </div>
+                <div class="meta-info">Jan 2021 - Present | Mountain View, CA</div>
+                <ul class="bullet-list">
+                    <li>Led the end-to-end product roadmap for a core AI infrastructure project, resulting in a <strong>25% increase in processing efficiency</strong> for enterprise clients.</li>
+                    <li>Orchestrated the launch of a new predictive analytics suite, achieving <strong>$10M in incremental revenue</strong> within the first 12 months.</li>
+                    <li>Managed a cross-functional team of 15 designers and engineers, fostering an agile environment that reduced release cycles from 6 weeks to 2 weeks.</li>
+                </ul>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <span class="role-title">Product Manager</span>
+                    <span class="company-name">@ Stripe</span>
+                </div>
+                <div class="meta-info">Jun 2018 - Dec 2020 | San Francisco, CA</div>
+                <ul class="bullet-list">
+                    <li>Streamlined global payout workflows for 1M+ merchants, reducing transaction latency by <strong>40%</strong> and improving user satisfaction scores by 15 points.</li>
+                    <li>Designed and implemented a multi-region compliance engine, ensuring 100% adherence to evolving international financial regulations across 50+ markets.</li>
+                    <li>Authored comprehensive PRDs and led stakeholder alignment sessions for high-stakes platform migrations, ensuring zero downtime for mission-critical services.</li>
+                </ul>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <span class="role-title">Associate Product Manager</span>
+                    <span class="company-name">@ Uber</span>
+                </div>
+                <div class="meta-info">May 2016 - May 2018 | San Francisco, CA</div>
+                <ul class="bullet-list">
+                    <li>Optimized driver onboarding experience through A/B testing and funnel analysis, increasing driver conversion rates by <strong>12%</strong> in Tier 1 cities.</li>
+                    <li>Partnered with UXR teams to identify and resolve critical friction points in the rider app, leading to a <strong>20% reduction in support tickets</strong> related to booking errors.</li>
+                </ul>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <span class="role-title">Product Management Intern</span>
+                    <span class="company-name">@ Airbnb</span>
+                </div>
+                <div class="meta-info">May 2015 - Aug 2015 | San Francisco, CA</div>
+                <ul class="bullet-list">
+                    <li>Conducted extensive market research and competitive analysis to inform the 2016 guest experience roadmap.</li>
+                    <li>Prototyped and validated a new localized search feature for the APAC market, which was later fully implemented.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="item">
+                <div class="project-title"><a href="#">OpenSource AI Toolkit</a></div>
+                <ul class="bullet-list" style="margin-top:0.3rem;">
+                    <li>Developed a Python-based library for rapid prototyping of machine learning models, currently used by <strong>5,000+ developers</strong> globally.</li>
+                </ul>
+            </div>
+
+            <div class="item">
+                <div class="project-title"><a href="#">Community Health Dashboard</a></div>
+                <ul class="bullet-list" style="margin-top:0.3rem;">
+                    <li>Built a real-time data visualization platform for local non-profits to track and report public health trends using D3.js and SQL.</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Right Column -->
+    <div class="column-right">
+        
+        <section>
+            <h2 class="section-title">Education</h2>
+            <div class="item">
+                <div class="edu-school">Stanford University</div>
+                <div class="meta-info">2014 - 2016</div>
+                <div class="edu-degree">M.S. in Computer Science</div>
+            </div>
+            <div class="item">
+                <div class="edu-school">University of California, Berkeley</div>
+                <div class="meta-info">2010 - 2014</div>
+                <div class="edu-degree">B.S. in Electrical Engineering</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Skills & Tools</h2>
+            
+            <div class="skill-group">
+                <div class="skill-group-title" style="margin-bottom:0.2rem;">Product Strategy</div>
+                <div class="meta-info" style="font-family: 'Google Sans', sans-serif; color: var(--text-main); font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3;">Market Analysis, Competitive Intelligence, PRDs, Roadmap Planning, Go-to-Market (GTM), User Persona Development</div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-group-title" style="margin-bottom:0.2rem;">Data & Analytics</div>
+                <div class="meta-info" style="font-family: 'Google Sans', sans-serif; color: var(--text-main); font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3;">SQL, Python (Pandas/NumPy), Tableau, Looker, Google Analytics, A/B Testing, Funnel Optimization</div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-group-title" style="margin-bottom:0.2rem;">Design & Technical</div>
+                <div class="meta-info" style="font-family: 'Google Sans', sans-serif; color: var(--text-main); font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3;">Figma, Sketch, Rapid Prototyping, Wireframing, C++, Java, AWS, Docker, Kubernetes</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Certifications</h2>
+
+            <div class="cert-item">
+                <div class="cert-title">Certified Product Manager (CPM)</div>
+                <div class="cert-meta">
+                    <span class="cert-platform">AIPMM</span> <span class="cert-date">| 2022</span>
+                </div>
+            </div>
+
+            <div class="cert-item">
+                <div class="cert-title">Advanced Data Science Specialization</div>
+                <div class="cert-meta">
+                    <span class="cert-platform">IBM / Coursera</span> <span class="cert-date">| 2021</span>
+                </div>
+            </div>
+
+            <div class="cert-item">
+                <div class="cert-title">Professional Project Manager (PMP)</div>
+                <div class="cert-meta">
+                    <span class="cert-platform">PMI</span> <span class="cert-date">| 2020</span>
+                </div>
+            </div>
+
+            <div class="cert-item">
+                <div class="cert-title">Human-Computer Interaction</div>
+                <div class="cert-meta">
+                    <span class="cert-platform">Interaction Design Foundation</span> <span class="cert-date">| 2019</span>
+                </div>
+            </div>
+
+        </section>
+
+        <section>
+            <h2 class="section-title">Languages</h2>
+            <div class="meta-info" style="font-family: 'Google Sans', sans-serif; color: var(--text-main); font-weight: 400; line-height: 1.3;">
+                English (Native), Mandarin (Fluent), Spanish (Conversational)
+            </div>
+        </section>
+
+    </div>
+</div>
+
+</body>
+</html>
